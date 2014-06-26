@@ -14,13 +14,16 @@ public class Busqueda {
     private Estado meta;
     private Laberinto lab;
     private Celda[][] c;
-    private final char[][] l = {{'#', '#', '#', '#', '#'},
-                                {' ', ' ', '#', ' ', ' '},
-                                {'#', ' ', ' ', ' ', '#'},
-                                {'#', ' ', '#', ' ', '#'},
-                                {'#', ' ', ' ', ' ', '#'},
-                                {'#', ' ', ' ', ' ', '#'},
-                                {'#', '#', '#', '#', '#'}};
+    private final char[][] l = {{'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
+                                {' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
+                                {'#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
+                                {'#', ' ', '#', ' ', ' ', '#', ' ', ' ', ' ', '#'},
+                                {'#', ' ', '#', ' ', ' ', '#', ' ', '#', ' ', '#'},
+                                {'#', ' ', '#', ' ', ' ', '#', '#', '#', ' ', '#'},
+                                {'#', ' ', '#', ' ', ' ', ' ', ' ', '#', ' ', '#'},
+                                {'#', ' ', '#', '#', '#', ' ', ' ', '#', ' ', '#'},
+                                {'#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
+                                {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
 
     public Busqueda(Estado actual, Estado meta) {
         this.abiertos = new PriorityQueue<>();
@@ -127,7 +130,7 @@ public class Busqueda {
         Estado ex1;
         String mov1;
 
-        if (actual.getCel().getX() + 1 <= 6) {
+        if (actual.getCel().getX() + 1 <= l.length - 1) {
             if (lab.getCeldas()[x + 1][y].getTipo().equals(new String("C"))) {
                 mov1 = " moverse Abajo [" + nx + "] [" + y + "]";
                 nuevo = new Celda(x + 1, y, new String("C"));
@@ -146,7 +149,7 @@ public class Busqueda {
         Estado ex1;
         String mov1;
 
-        if (y + 1 <= 4) {
+        if (y + 1 <= l.length - 1) {
             if (lab.getCeldas()[x][y + 1].getTipo().equals(new String("C"))) {
                 mov1 = " moverse a la Derecha [" + x + "] [" + ny + "]";
                 nuevo = new Celda(x, y + 1, new String("C"));
@@ -181,9 +184,9 @@ public class Busqueda {
     }
 
     public void mapa() {
-        c = new Celda[7][5];
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 5; j++) {
+        c = new Celda[l.length][l.length];
+        for (int i = 0; i < l.length; i++) {
+            for (int j = 0; j < l.length; j++) {
                 if (l[i][j] == '#') {
                     c[i][j] = new Celda(i, j, "P");
                 } else if (l[i][j] == ' ') {

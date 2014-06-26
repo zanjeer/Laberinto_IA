@@ -11,8 +11,8 @@ public class Main {
         Celda cel_inicial, cel_fin;
         Busqueda b;
 
-        cel_inicial = new Celda(1, 0, "C");
-        cel_fin = new Celda(5, 3, "C");
+        cel_inicial = new Celda(2, 2, "C");
+        cel_fin = new Celda(8, 8, "C");
 
         inicio = new Estado(cel_inicial, null, "Inicio");
         meta = new Estado(cel_fin, null, null);
